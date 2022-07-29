@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "nx run-many --target=build --all",
+    "format": "nx run-many --target=format --all",
+    "typecheck": "nx run-many --target=typecheck --all"
+  },
+  "devDependencies": {
+    "nx": "14.5.1"
+  }
+}

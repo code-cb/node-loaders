@@ -1,0 +1,36 @@
+{
+  "name": "@codecb/node-loader-http",
+  "version": "0.0.8",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "directory": "packages/http",
+    "type": "git",
+    "url": "https://github.com/code-cb/node-loaders"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p ./tsconfig.json",
+    "build:watch": "yarn build --declarationMap --sourceMap --watch",
+    "format": "prettier --write 'src/**/*.ts'",
+    "prepublishOnly": "yarn build",
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "devDependencies": {
+    "@codecb/node-loader": "^0.0.9",
+    "@codecb/prettierrc": "0.0.1",
+    "@codecb/tsconfigs": "^0.0.8",
+    "@types/node": "^18.6.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "prettier": "@codecb/prettierrc",
+  "engines": {
+    "node": ">=18.6.0"
+  }
+}

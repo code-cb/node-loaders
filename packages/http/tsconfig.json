@@ -1,0 +1,8 @@
+{
+  "extends": "@codecb/tsconfigs/tsconfig.node-lib",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"], // TODO: Remove this after fetch API types are available in @types/nodes
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}
