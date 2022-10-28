@@ -9,6 +9,9 @@
     "typecheck": "nx run-many --target=typecheck --all"
   },
   "devDependencies": {
-    "nx": "14.5.1"
+    "nx": "15.0.3"
+  },
+  "engines": {
+    "node": "^18.12.0"
   }
 }

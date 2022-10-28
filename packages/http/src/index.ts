@@ -43,7 +43,7 @@ export const resolve: ResolveHook = (
     return nextResolve(specifier, { ...context, parentURL });
   if (isRelativePath(specifier))
     return { shortCircuit: true, url: new URL(specifier, parentURL).href };
-  // If specifier is a bare module name, make sure to not include parentURL in the context to force Node to resolve it as a Node module
-  // If specifier is an absolute path, it doesn't matter if parentURL is included in the context
-  return nextResolve(specifier, context);
+  // If `specifier` is an absolute path, it doesn't matter if `parentURL` is included in the `context` object
+  // If `specifier` is a bare module name, make sure to set `parentURL` as `undefined` to force Node to resolve it as a Node module (because Node thinks that it's resolving a bare import inside the entry point)
+  return nextResolve(specifier, { ...context, parentURL: undefined });
 };
