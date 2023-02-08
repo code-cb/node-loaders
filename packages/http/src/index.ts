@@ -1,4 +1,4 @@
-import type { LoadHook, ResolveHook } from '@codecb/node-loader';
+import type { LoadHook, ModuleFormat, ResolveHook } from '@codecb/node-loader';
 import { execArgv } from 'node:process';
 
 const useBuiltinNetworkImport = execArgv.includes(
@@ -10,7 +10,7 @@ const isRelativePath = (s: string) => s && /^\.?\.\//.test(s);
 
 // As of v18.2.0 Node only supports custom source with `json`, `module` or `wasm` format
 // See: https://nodejs.org/api/esm.html#loadurl-context-defaultload
-const getFormat = (url: string) => {
+const getFormat = (url: string): ModuleFormat => {
   if (url.endsWith('.json')) return 'json';
   if (url.endsWith('.mjs')) return 'module';
   if (url.endsWith('.wasm')) return 'wasm';
@@ -22,7 +22,7 @@ export const load: LoadHook = async (url, context, nextLoad) => {
   const response = await fetch(url);
   if (!response.ok)
     throw Error(
-      `Request to download JavaScript code from ${url} failed with HTTP status ${response.status} ${response.statusText}`,
+      `Request to download source code from ${url} failed with HTTP status ${response.status} ${response.statusText}`,
     );
   return {
     format: getFormat(url),
